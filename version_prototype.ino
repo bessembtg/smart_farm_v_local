@@ -86,9 +86,8 @@ void setup() {
   Serial.begin(115200);
   delay(1000);
   
-  Serial.println("\n\n========================================");
   Serial.println("       SmartFarm ESP32 - Démarrage");
-  Serial.println("========================================\n");
+ 
 
   // Charger les paramètres sauvegardés
   loadSettings();
@@ -112,12 +111,9 @@ void setup() {
                   now.hour(), now.minute(), now.second(),
                   now.day(), now.month(), now.year());
                   
-    // IMPORTANT: Décommenter la ligne suivante pour régler l'heure du RTC (UNE SEULE FOIS)
+    // Décommenter la ligne suivante pour régler l'heure du RTC (UNE SEULE FOIS)
     // Puis re-commenter et téléverser à nouveau
     // rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-    
-    // Ou régler manuellement (année, mois, jour, heure, minute, seconde):
-    // rtc.adjust(DateTime(2025, 11, 15, 14, 30, 0));
   }
 
   // Initialisation des capteurs
@@ -164,7 +160,6 @@ void setup() {
   
   server.begin();
   Serial.println("✓ Serveur web démarré!");
-  Serial.println("\n========================================\n");
   
   esp_task_wdt_reset();
 }
@@ -533,7 +528,7 @@ void saveSettings() {
   preferences.putULong("waitDur", waitDuration);
   
   preferences.end();
-  Serial.println("💾 Paramètres sauvegardés");
+  Serial.println("Paramètres sauvegardés");
 }
 
 void loadSettings() {
@@ -549,7 +544,7 @@ void loadSettings() {
   waitDuration = preferences.getULong("waitDur", 300000);
   
   preferences.end();
-  Serial.println("📂 Paramètres chargés depuis la mémoire");
+  Serial.println("Paramètres chargés depuis la mémoire");
 }
 
 void saveSchedules() {
@@ -570,7 +565,7 @@ void saveSchedules() {
   }
   
   preferences.end();
-  Serial.printf("💾 %d horaire(s) sauvegardé(s)\n", motorSchedules.size());
+  Serial.printf("%d horaire(s) sauvegardé(s)\n", motorSchedules.size());
 }
 
 void loadSchedules() {
@@ -593,7 +588,7 @@ void loadSchedules() {
   }
   
   preferences.end();
-  Serial.printf("📂 %d horaire(s) chargé(s) depuis la mémoire\n", motorSchedules.size());
+  Serial.printf(" %d horaire(s) chargé(s) depuis la mémoire\n", motorSchedules.size());
 }
 
 String getHTML() {
